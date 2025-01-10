@@ -13,11 +13,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Admin
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'is_admin' => true,
+            'status' => 'approved',
         ]);
+
+        // Approved User
+        User::factory()->create([
+            'name' => 'Approved User',
+            'email' => 'user1@example.com',
+            'status' => 'approved',
+        ]);
+
+
+        // Pending User
+        User::factory()->create([
+            'name' => 'Pending User',
+            'email' => 'user2@example.com',
+            'status' => 'pending',
+        ]);
+
+        // Rejected User
+        User::factory()->create([
+            'name' => 'Rejected User',
+            'email' => 'user3@example.com',
+            'status' => 'rejected',
+        ]);
+
     }
 }
