@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\articles_pdfs>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ArticlesPdfs>
  */
 class ArticlesPdfsFactory extends Factory
 {
@@ -17,7 +17,8 @@ class ArticlesPdfsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'hash' => $this->faker->sha256(),
+            'path' => 'pdfs/'.fake()->slug().'.pdf',
         ];
     }
 }

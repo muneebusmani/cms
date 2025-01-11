@@ -29,10 +29,10 @@ This project aims to build a Content Management System (CMS) , allowing users to
         - `hasMany` ArticlePdf
     - ArticlePdf model with `belongsTo` Article relationship.
 
-3. (Optional) **Factories & Seeders:** () () (optional)
+3. ✅ **Factories & Seeders:** Completed!
 
-    - Define factories to generate test data for articles and PDFs (optional).
-    - Use seeders to populate the database with initial data (optional).
+    - Define factories to generate test data for articles and PDFs.
+    - Use seeders to populate the database with initial data.
 
 4. **Application Logic (later):** (️) (️) () (later)
 

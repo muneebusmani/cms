@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Storearticles_pdfsRequest;
-use App\Http\Requests\Updatearticles_pdfsRequest;
-use App\Models\articles_pdfs;
+use App\Http\Requests\StoreArticlesPdfsRequest;
+use App\Http\Requests\UpdateArticlesPdfsRequest;
+use App\Models\ArticlesPdfs;
 
 class ArticlesPdfsController extends Controller
 {
@@ -27,7 +27,7 @@ class ArticlesPdfsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Storearticles_pdfsRequest $request)
+    public function store(StoreArticlesPdfsRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ArticlesPdfsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(articles_pdfs $articles_pdfs)
+    public function show(ArticlesPdfs $ArticlesPdfs)
     {
         //
     }
@@ -43,7 +43,7 @@ class ArticlesPdfsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(articles_pdfs $articles_pdfs)
+    public function edit(ArticlesPdfs $ArticlesPdfs)
     {
         //
     }
@@ -51,7 +51,7 @@ class ArticlesPdfsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatearticles_pdfsRequest $request, articles_pdfs $articles_pdfs)
+    public function update(UpdateArticlesPdfsRequest $request, ArticlesPdfs $ArticlesPdfs)
     {
         //
     }
@@ -59,7 +59,7 @@ class ArticlesPdfsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(articles_pdfs $articles_pdfs)
+    public function destroy(ArticlesPdfs $ArticlesPdfs)
     {
         //
     }

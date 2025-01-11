@@ -25,7 +25,7 @@ class Article extends Model
      */
     public function pdfs(): HasMany
     {
-        return $this->hasMany(articles_pdfs::class);
+        return $this->hasMany(ArticlesPdfs::class);
     }
 
     protected $casts = [

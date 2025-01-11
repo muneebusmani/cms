@@ -2,9 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\ArticlesPdfs;
 use App\Models\User;
-use App\Models\articles_pdfs;
-use Illuminate\Auth\Access\Response;
 
 class ArticlesPdfsPolicy
 {
@@ -19,7 +18,7 @@ class ArticlesPdfsPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, articles_pdfs $articlesPdfs): bool
+    public function view(User $user, ArticlesPdfs $articlesPdfs): bool
     {
         return false;
     }
@@ -35,7 +34,7 @@ class ArticlesPdfsPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, articles_pdfs $articlesPdfs): bool
+    public function update(User $user, ArticlesPdfs $articlesPdfs): bool
     {
         return false;
     }
@@ -43,7 +42,7 @@ class ArticlesPdfsPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, articles_pdfs $articlesPdfs): bool
+    public function delete(User $user, ArticlesPdfs $articlesPdfs): bool
     {
         return false;
     }
@@ -51,7 +50,7 @@ class ArticlesPdfsPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, articles_pdfs $articlesPdfs): bool
+    public function restore(User $user, ArticlesPdfs $articlesPdfs): bool
     {
         return false;
     }
@@ -59,7 +58,7 @@ class ArticlesPdfsPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, articles_pdfs $articlesPdfs): bool
+    public function forceDelete(User $user, ArticlesPdfs $articlesPdfs): bool
     {
         return false;
     }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
+use App\Models\ArticlesPdfs;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -41,7 +43,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'user3@example.com',
             'status' => 'rejected',
         ]);
-        User::factory(10)->create();
+        // User::factory(10)->create();
+        $articles = Article::factory(10)->create();
+        foreach ($articles as $article) {
+            $numberOfPdfs = fake()->numberBetween(1, 3);
+            ArticlesPdfs::factory($numberOfPdfs)->create([
+                'article_id' => $article->id,
+            ]);
+        }
 
     }
 }
