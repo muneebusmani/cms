@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             'status' => 'approved',
         ]);
 
-
         // Pending User
         User::factory()->create([
             'name' => 'Pending User',
@@ -42,6 +41,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'user3@example.com',
             'status' => 'rejected',
         ]);
+        User::factory(10)->create();
 
     }
 }
