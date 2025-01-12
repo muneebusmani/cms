@@ -34,13 +34,13 @@ This project aims to build a Content Management System (CMS) , allowing users to
     - Define factories to generate test data for articles and PDFs.
     - Use seeders to populate the database with initial data.
 
-4. **Application Logic (later):** (️) (️) () (later)
+4. **Application Logic (later):**
 
     - Implement controllers for user registration, login, article management, and admin functionality.
     - Define routes for accessing different functionalities.
     - Create views for user interface elements and data display.
 
-5. **Authentication & Authorization (later):** () (later)
+5. **Authentication & Authorization (later):**
     - Implement user authentication (login, logout).
     - Implement authorization to restrict access based on user roles (admin vs. regular user).
 
