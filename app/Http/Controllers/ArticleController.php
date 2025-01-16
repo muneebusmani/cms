@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\ArticlesPdfs;
 use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class ArticleController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
         /**
          * @var array|null|false $data The Data After Passing the validations
@@ -34,6 +35,12 @@ class ArticleController extends Controller
             'pdfs' => 'max:15',
             'pdfs.*' => 'required|file|mimes:pdf|extensions:pdf|max:8192',
         ]);
+        if (!$request->hasFile('thumbnail')) {
+            return back()->with('error', 'No thumbnail uploaded.');
+        }
+        if (!$request->hasFile('pdfs')) {
+            return back()->with('error', 'No pdfs uploaded.');
+        }
         $pdfs_paths = $this->handle_files($request, 'pdfs', 'pdfs');
         $thumbnail_path = ($request->hasFile('thumbnail')) ? $this->handle_file($request->file('thumbnail'), 'thumbnails') : '';
         try {
@@ -53,14 +60,15 @@ class ArticleController extends Controller
                         'hash' => $hash,
                     ]);
                 }
+
             }
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
-
             return back()->withInput()->with('error', 'Failed to create article. Please try again.'); // Redirect back with error message
         }
+        return redirect()->route('articles.index')->with('success', 'Article created successfully.');
     }
 
     /**
@@ -74,7 +82,6 @@ class ArticleController extends Controller
         if (! $request->hasFile($key)) {
             return null;
         }
-
         $paths = [];
         /**
          * @var UploadedFile[] $files The Array of UploadedFile objects Which will be further used for Storing the files
@@ -86,10 +93,11 @@ class ArticleController extends Controller
         }
 
         return $paths;
-
     }
 
     /**
+     * Generate a UUID v7, Get the file extension from UploadedFile object, Create a Name out of it, and put the file in the specified Folder of a specified name and Return the path as string. Note that the output Path isn't the full Path
+     *
      * @param  UploadedFile  $file  The Uploaded File
      * @param  string  $folder  The name of Folder in which the file should be stored
      * @return string The Path which contains the stored file
@@ -99,7 +107,6 @@ class ArticleController extends Controller
         $uuid = Str::uuid7();
         $extension = $file->extension();
         $name = "$uuid.$extension";
-
         return Storage::putFileAs($folder, $file, $name);
     }
 
