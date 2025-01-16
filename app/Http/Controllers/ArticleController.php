@@ -22,10 +22,11 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all();
+
         return Inertia::render('Profile/Edit', ['articles' => $articles]);
     }
 
-    public function store(Request $request):RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         /**
          * @var array|null|false $data The Data After Passing the validations
@@ -37,10 +38,10 @@ class ArticleController extends Controller
             'pdfs' => 'max:15',
             'pdfs.*' => 'required|file|mimes:pdf|extensions:pdf|max:8192',
         ]);
-        if (!$request->hasFile('thumbnail')) {
+        if (! $request->hasFile('thumbnail')) {
             return back()->with('error', 'No thumbnail uploaded.');
         }
-        if (!$request->hasFile('pdfs')) {
+        if (! $request->hasFile('pdfs')) {
             return back()->with('error', 'No pdfs uploaded.');
         }
         $pdfs_paths = $this->handle_files($request, 'pdfs', 'pdfs');
@@ -68,8 +69,10 @@ class ArticleController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
+
             return back()->withInput()->with('error', 'Failed to create article. Please try again.'); // Redirect back with error message
         }
+
         return redirect()->route('articles.index')->with('success', 'Article created successfully.');
     }
 
@@ -109,15 +112,14 @@ class ArticleController extends Controller
         $uuid = Str::uuid7();
         $extension = $file->extension();
         $name = "$uuid.$extension";
+
         return Storage::putFileAs($folder, $file, $name);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-    }
+    public function create() {}
 
     /**
      * Display the specified resource.
