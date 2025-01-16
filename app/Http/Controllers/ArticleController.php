@@ -11,6 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Inertia\Inertia;
 use Log;
 
 class ArticleController extends Controller
@@ -20,7 +21,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all();
+        return Inertia::render('Profile/Edit', ['articles' => $articles]);
     }
 
     public function store(Request $request):RedirectResponse
@@ -115,7 +117,6 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
