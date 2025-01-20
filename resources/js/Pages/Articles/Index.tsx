@@ -1,4 +1,24 @@
-export const Index = (): React.JSX.Element => {
+import React, { JSX } from 'react';
+
+interface Pdf {
+    hash: string | null | undefined;
+    path: string | null | undefined;
+}
+
+interface Article {
+    title: string;
+    description: string;
+    thumbnail: string;
+    pdfs: Pdf[];
+}
+
+const SampleArticle: Article = {
+    description = '',
+    pdfs = [[(hash = ''), (path = '')]],
+    thumbnail = '',
+    title = '',
+};
+const Index: React.FC<Article> = (): JSX.Element => {
     const [title, description, thumbnail, pdfs] = ['', '', '', ['']];
     return (
         <>
@@ -9,7 +29,7 @@ export const Index = (): React.JSX.Element => {
             <img src={thumbnail} alt={title} />
             <main>
                 {pdfs.map(
-                    (pdf: string): React.JSX.Element => (
+                    (pdf: string): JSX.Element => (
                         <>{pdf}</>
                     ),
                 )}
@@ -17,3 +37,4 @@ export const Index = (): React.JSX.Element => {
         </>
     );
 };
+export default Index;
